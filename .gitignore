@@ -46,7 +46,12 @@
 *.tlog
 *.txt
 *.user
-*.vcxproj
 *dotfile
 *.suo
-*.vcxproj
+*.vs
+*.vsidx
+*.lock
+*.db-wal
+*.db-shm
+Debug/
+*.htm
