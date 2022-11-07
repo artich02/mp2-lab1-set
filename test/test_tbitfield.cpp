@@ -223,7 +223,7 @@ TEST(TBitField, and_operator_applied_to_bitfields_of_non_equal_size)
   EXPECT_EQ(expBf, bf1 & bf2);
 }
 
-TEST(TBitField, can_invert_bitfield)
+TEST(TBitField, can_invert_bitfield) //?
 {
   const int size = 2;
   TBitField bf(size), negBf(size), expNegBf(size);
@@ -237,7 +237,7 @@ TEST(TBitField, can_invert_bitfield)
   EXPECT_EQ(expNegBf, negBf);
 }
 
-TEST(TBitField, can_invert_large_bitfield)
+TEST(TBitField, can_invert_large_bitfield) //?
 {
   const int size = 38;
   TBitField bf(size), negBf(size), expNegBf(size);
@@ -251,7 +251,7 @@ TEST(TBitField, can_invert_large_bitfield)
   EXPECT_EQ(expNegBf, negBf);
 }
 
-TEST(TBitField, can_invert_many_random_bits_bitfield)
+TEST(TBitField, can_invert_many_random_bits_bitfield) //?
 {
   const int size = 38;
   TBitField bf(size), negBf(size), expNegBf(size);

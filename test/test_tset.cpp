@@ -197,7 +197,7 @@ TEST(TSet, can_combine_two_sets_of_equal_size)
   EXPECT_EQ(expSet, set3);
 }
 
-TEST(TSet, check_size_changes_of_the_combination_of_two_sets_of_non_equal_size)
+TEST(TSet, check_size_changes_of_the_combination_of_two_sets_of_non_equal_size) //?
 {
   const int size1 = 5, size2 = 7;
   TSet set1(size1), set2(size2), set3(size1);
@@ -214,7 +214,7 @@ TEST(TSet, check_size_changes_of_the_combination_of_two_sets_of_non_equal_size)
   EXPECT_EQ(size2, set3.GetMaxPower());
 }
 
-TEST(TSet, can_combine_two_sets_of_non_equal_size)
+TEST(TSet, can_combine_two_sets_of_non_equal_size)  //?
 {
   const int size1 = 5, size2 = 7;
   TSet set1(size1), set2(size2), set3(size1), expSet(size2);
