@@ -109,13 +109,9 @@ TSet TSet::operator~(void) // дополнение
 
 // перегрузка ввода/вывода--------------------------------------------------------------------------------------------
 
-istream &operator>>(istream &istr, TSet &s) // ввод
+istream &operator>>(istream &istr, TSet &s) // ввод //
 {
-    for (size_t i = 0; i < s.MaxPower; i++)
-    {
-        istr >> s.BitField;
-        s.IsMember(i);
-    }
+    istr >> s.BitField;
     return istr;
 }
 

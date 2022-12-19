@@ -7,16 +7,17 @@
 
 #include "tbitfield.h"
 
-TBitField::TBitField(int len)  // при выполнении работы использовались лекционные материалы
+TBitField::TBitField(int len)  // при выполнении работы использовались лекционные материалы //
 {
     if (len <= 0)
         throw exception("Erorr");
 
     BitLen = len;
-    MemLen = len / (sizeof(TELEM) * 8) + 1;
+    MemLen = BitLen / (sizeof(TELEM) * 8);
+    if (MemLen * sizeof(TELEM) * 8 < len)
+        MemLen++;
     pMem = new TELEM[MemLen];
     memset(pMem,0, MemLen * sizeof(TELEM));
-    
 }
 
 TBitField::TBitField(const TBitField &bf) // конструктор копирования
@@ -80,12 +81,15 @@ int TBitField::GetBit(const int n) const // получить значение б
 
 // битовые операции-------------------------------------------------------------------------------------------------
 
-TBitField& TBitField::operator=(const TBitField &bf) // присваивание
+TBitField& TBitField::operator=(const TBitField &bf) // присваивание //
 {
     BitLen = bf.BitLen;
-    MemLen = bf.MemLen;
-    delete[] pMem; 
-    pMem = new TELEM[MemLen];
+    if (MemLen != bf.MemLen)
+    { 
+        delete[] pMem; 
+        MemLen = bf.MemLen;
+        pMem = new TELEM[MemLen];
+    }
     for (size_t i = 0; i < MemLen; i++)
         pMem[i] = bf.pMem[i];
     return *this;
@@ -151,11 +155,16 @@ TBitField TBitField::operator~(void) // отрицание
 
 istream &operator>>(istream &istr, TBitField &bf) // ввод
 {
-    TELEM tmp;
+    int tmp;
     for (size_t i = 0; i < bf.GetLength(); i++)
     {
         istr >> tmp;
-        bf.SetBit(i);
+        if (tmp == 0)
+            bf.ClrBit(i);
+        else if (tmp == 1)
+            bf.SetBit(i);
+        else
+            throw exception("Erorr");
     }
     return istr;
 }
